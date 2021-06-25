@@ -1,10 +1,13 @@
 <div class="row">
   <h2 class="text-center">Tasks</h2>
   <hr />
-  <app-tasks-form (submitTask)="onSubmitTask($event)"></app-tasks-form>
+  <!-- <app-tasks-form (submitTask)="onSubmitTask($event)"></app-tasks-form> -->
+  <app-tasks-form></app-tasks-form>
   <!-- <hr /> -->
-  <app-tasks-list
-    [tasks]="tasks"
-    (taskSelected)="onTaskSelected($event)"
-  ></app-tasks-list>
+  <!-- <app-tasks-list -->
+  <!-- [tasks]="tasks" -->
+  <!-- (taskSelected)="onTaskSelected($event)" -->
+  <!-- ></app-tasks-list> -->
+  <!-- <app-tasks-list (taskSelected)="onTaskSelected($event)"></app-tasks-list> -->
+  <app-tasks-list></app-tasks-list>
 </div>

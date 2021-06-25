@@ -1,11 +1,23 @@
 <form (submit)="onSubmit($event)">
   <div class="row justify-content-center gy-3">
     <div class="col-sm-6">
-      <!-- <label for="task" class="form-label">Task</label> -->
-      <input type="text" id="task" class="form-control" #taskInput />
+      <app-spinner [isGrow]="true"></app-spinner>
+      <input
+        type="text"
+        id="task"
+        class="form-control"
+        #taskInput
+        *ngIf="(spinnerService.isLoading$ | async) === false"
+      />
     </div>
     <div class="col-auto">
-      <button class="btn btn-primary" type="submit">Add Task</button>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="spinnerService.isLoading$ | async"
+      >
+        Add Task
+      </button>
     </div>
   </div>
 </form>

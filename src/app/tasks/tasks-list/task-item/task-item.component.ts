@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TasksStore } from '../../tasks.store';
 
 @Component({
   selector: 'app-task-item',
@@ -9,13 +10,12 @@ export class TaskItemComponent implements OnInit {
   @Input() task: string;
   @Input() time: string;
   @Input() taskId: string;
-  @Output() taskSelected = new EventEmitter<string>();
 
-  constructor() {}
+  constructor(private tasksStore: TasksStore) {}
 
   ngOnInit(): void {}
 
   onTaskSelected(): void {
-    this.taskSelected.emit(this.taskId);
+    this.tasksStore.deleteTask(this.taskId);
   }
 }
