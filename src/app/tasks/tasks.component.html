@@ -1,0 +1,10 @@
+<div class="row">
+  <h2 class="text-center">Tasks</h2>
+  <hr />
+  <app-tasks-form (submitTask)="onSubmitTask($event)"></app-tasks-form>
+  <!-- <hr /> -->
+  <app-tasks-list
+    [tasks]="tasks"
+    (taskSelected)="onTaskSelected($event)"
+  ></app-tasks-list>
+</div>

@@ -1,0 +1,8 @@
+<li
+  class="list-group-item list-group-item-action"
+  (click)="onTaskSelected()"
+  style="cursor: pointer"
+>
+  <h6>{{ task }}</h6>
+  <small class="text-muted">{{ time | date: "medium" }}</small>
+</li>

@@ -1,0 +1,14 @@
+<div class="row my-4 justify-content-center">
+  <div class="col-md-12 col-lg-8">
+    <ul class="list-group">
+      <app-task-item
+        *ngFor="let task of tasks; let i = index"
+        [task]="task.task"
+        [time]="task.time"
+        [taskId]="i"
+        (taskSelected)="onTaskSelected($event)"
+        @item
+      ></app-task-item>
+    </ul>
+  </div>
+</div>
