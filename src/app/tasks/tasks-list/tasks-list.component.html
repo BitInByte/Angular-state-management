@@ -4,8 +4,11 @@
     class="col-md-12 col-lg-8"
     *ngIf="(spinnerService.isLoading$ | async) === false"
   >
-    <ng-container *ngIf="tasksStore.tasks$ | async as tasks">
-      <p *ngIf="tasks.length === 0; else elseBlock">No Tasks Added!</p>
+    <!-- <ng-container *ngIf="tasksStore.tasks$ | async as tasks"> -->
+    <ng-container *ngIf="tasks">
+      <p *ngIf="tasks.length === 0; else elseBlock" class="text-center">
+        No Tasks Added!
+      </p>
       <ng-template #elseBlock>
         <ul class="list-group">
           <app-task-item

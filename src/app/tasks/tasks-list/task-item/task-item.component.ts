@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TasksStore } from '../../tasks.store';
+import { Store } from '@ngrx/store';
+import * as Tasks from '../../store/task.actions';
 
 @Component({
   selector: 'app-task-item',
@@ -11,11 +12,11 @@ export class TaskItemComponent implements OnInit {
   @Input() time: string;
   @Input() taskId: string;
 
-  constructor(private tasksStore: TasksStore) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
   onTaskSelected(): void {
-    this.tasksStore.deleteTask(this.taskId);
+    this.store.dispatch(new Tasks.DeleteTask({ taskId: this.taskId }));
   }
 }

@@ -20,6 +20,8 @@ export class TaskService {
 
   getTasks(): Observable<Task[]> {
     return this.http.get<IGetTasks>(this.url).pipe(
+      take(1),
+      shareReplay(),
       map((resData) => {
         // Firebase return an object instead of an array
         const tasks: Task[] = [];
@@ -30,9 +32,7 @@ export class TaskService {
         }
         return tasks;
       }),
-      tap(console.log),
-      take(1),
-      shareReplay()
+      tap(console.log)
     );
   }
 

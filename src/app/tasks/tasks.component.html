@@ -9,5 +9,6 @@
   <!-- (taskSelected)="onTaskSelected($event)" -->
   <!-- ></app-tasks-list> -->
   <!-- <app-tasks-list (taskSelected)="onTaskSelected($event)"></app-tasks-list> -->
-  <app-tasks-list></app-tasks-list>
+  <!-- <app-tasks-list [tasks]="(tasks$ | async).tasks"></app-tasks-list> -->
+  <app-tasks-list [tasks]="tasks$ | async"></app-tasks-list>
 </div>

@@ -1,11 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { Task } from '../task.model';
-import { TaskService } from '../task.service';
-import { TasksStore } from '../tasks.store';
+// import { TasksStore } from '../tasks.store';
 
 @Component({
   selector: 'app-tasks-list',
@@ -41,10 +38,8 @@ import { TasksStore } from '../tasks.store';
   ],
 })
 export class TasksListComponent implements OnInit {
-  constructor(
-    public spinnerService: SpinnerService,
-    public tasksStore: TasksStore
-  ) {}
+  @Input() tasks: Task[];
+  constructor(public spinnerService: SpinnerService) {}
 
   ngOnInit(): void {}
 }
