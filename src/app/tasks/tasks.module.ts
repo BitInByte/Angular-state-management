@@ -36,8 +36,8 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     BrowserAnimationsModule,
     SharedModule,
     StoreModule.forFeature(
-      'tasks',
-      fromTask.taskReducer,
+      fromTask.taskFeatureKey,
+      fromTask.reducer,
       !environment.production && { metaReducers }
     ),
     EffectsModule.forFeature([TaskEffects]),

@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { Task } from '../task.model';
-import * as Tasks from '../store/task.actions';
+import * as TasksActions from '../store/task.actions';
 import { takeUntil, tap } from 'rxjs/operators';
 import { Actions, ofType } from '@ngrx/effects';
 import { Subject } from 'rxjs';
@@ -17,13 +17,7 @@ import { Subject } from 'rxjs';
   selector: 'app-tasks-form',
   templateUrl: './tasks-form.component.html',
   styleUrls: ['./tasks-form.component.css'],
-  providers: [
-    SpinnerService,
-    // {
-    // provide: 'Spinner-task-form',
-    // useValue: SpinnerService,
-    // },
-  ],
+  providers: [SpinnerService],
 })
 export class TasksFormComponent implements OnInit, OnDestroy {
   @ViewChild('taskInput', { static: true }) taskInputRef: ElementRef;
@@ -32,13 +26,13 @@ export class TasksFormComponent implements OnInit, OnDestroy {
   constructor(
     public spinnerService: SpinnerService,
     private store: Store,
-    private actions$: Actions // @Inject('Spinner-task-form') private spinnerService2: SpinnerService
+    private actions$: Actions
   ) {}
 
   ngOnInit(): void {
     this.actions$
       .pipe(
-        ofType(Tasks.ActionTypes.SaveTask),
+        ofType(TasksActions.saveTask),
         takeUntil(this.destroyed$),
         tap(() => {
           this.spinnerService.loadingOn();
@@ -48,7 +42,7 @@ export class TasksFormComponent implements OnInit, OnDestroy {
 
     this.actions$
       .pipe(
-        ofType(Tasks.ActionTypes.AddTask),
+        ofType(TasksActions.addTask),
         takeUntil(this.destroyed$),
         tap(() => this.spinnerService.loadingOff())
       )
@@ -60,7 +54,7 @@ export class TasksFormComponent implements OnInit, OnDestroy {
     const value = event.target[0].value;
     if (value.length > 0) {
       const task = new Task(value, Date.now());
-      this.store.dispatch(new Tasks.SaveTask({ task }));
+      this.store.dispatch(TasksActions.saveTask({ task }));
     }
   }
 

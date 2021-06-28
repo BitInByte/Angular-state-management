@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as Tasks from '../../store/task.actions';
+import * as TasksActions from '../../store/task.actions';
 
 @Component({
   selector: 'app-task-item',
@@ -17,6 +17,6 @@ export class TaskItemComponent implements OnInit {
   ngOnInit(): void {}
 
   onTaskSelected(): void {
-    this.store.dispatch(new Tasks.DeleteTask({ taskId: this.taskId }));
+    this.store.dispatch(TasksActions.deleteTask({ taskId: this.taskId }));
   }
 }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-// import { TaskInterface } from './store/task-state.interface';
-import * as Tasks from './store/task.actions';
+import { Store } from '@ngrx/store';
+import * as TasksActions from './store/task.actions';
 import * as fromTask from './store/task.reducer';
-// import * as fromTaskRoot from './store';
-import { Task } from './task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -13,12 +9,11 @@ import { Task } from './task.model';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  tasks$: Observable<Task[]>;
+  tasks$ = this.store.select(fromTask.selectFeatureTasks);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
-    this.tasks$ = this.store.pipe(select(fromTask.selectFeatureTasks));
-    this.store.dispatch(new Tasks.GetTasks());
+    this.store.dispatch(TasksActions.getTasks());
   }
 }

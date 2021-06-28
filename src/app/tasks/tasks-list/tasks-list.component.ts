@@ -1,8 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { Task } from '../task.model';
-// import { TasksStore } from '../tasks.store';
 
 @Component({
   selector: 'app-tasks-list',

@@ -1,53 +1,27 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Task } from '../task.model';
 
-export enum ActionTypes {
-  // Square brackets to create a category,
-  // The first is the name of the feature and
-  // the second is from where the action came from
-  GetTasks = '[Task Page] Get Tasks',
-  TasksSuccess = '[Task API] Tasks Success',
-  SaveTask = '[Task Page] Save Task',
-  AddTask = '[Task API] Add Task',
-  DeleteTask = '[Task Page] Delete Task',
-  DeleteSuccess = '[Task API] Delete Task Success',
-}
-
-export class GetTasks implements Action {
-  readonly type = ActionTypes.GetTasks;
-}
-
-export class TasksSuccess implements Action {
-  readonly type = ActionTypes.TasksSuccess;
-
-  constructor(public payload: { tasks: Task[] }) {}
-}
-
-export class SaveTask implements Action {
-  readonly type = ActionTypes.SaveTask;
-
-  constructor(public payload: { task: Task }) {}
-}
-
-export class AddTask implements Action {
-  readonly type = ActionTypes.AddTask;
-  constructor(public payload: { task: Task }) {}
-}
-
-export class DeleteTask implements Action {
-  readonly type = ActionTypes.DeleteTask;
-  constructor(public payload: { taskId: string }) {}
-}
-
-export class DeleteTaskSuccess implements Action {
-  readonly type = ActionTypes.DeleteSuccess;
-  constructor(public payload: { taskId: string }) {}
-}
-
-export type ActionsUnion =
-  | GetTasks
-  | TasksSuccess
-  | AddTask
-  | SaveTask
-  | DeleteTask
-  | DeleteTaskSuccess;
+// Square brackets to create a category,
+// The first is the name of the feature and
+// the second is from where the action came from
+export const getTasks = createAction('[Task Page] Get Tasks');
+export const tasksSuccess = createAction(
+  '[Task API] Tasks Success',
+  props<{ tasks: Task[] }>()
+);
+export const saveTask = createAction(
+  '[Task Page] Save Task',
+  props<{ task: Task }>()
+);
+export const addTask = createAction(
+  '[Task API] Add Task',
+  props<{ task: Task }>()
+);
+export const deleteTask = createAction(
+  '[Task Page] Delete Task',
+  props<{ taskId: string }>()
+);
+export const deleteTaskSuccess = createAction(
+  '[Task API] Delete Task Success',
+  props<{ taskId: string }>()
+);
